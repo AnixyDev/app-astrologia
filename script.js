@@ -22,12 +22,12 @@ function showQuestion() {
     const button = document.createElement("div");
     button.textContent = option;
     button.classList.add("option");
-    button.onclick = () => selectOption(option);
+    button.onclick = (e) => selectOption(option, e); // ✅ PASAMOS 'e'
     optionsEl.appendChild(button);
   });
 }
 
-function selectOption(option) {
+function selectOption(option, event) {
   answers[currentQuestion] = option;
   Array.from(optionsEl.children).forEach(btn => btn.classList.remove("selected"));
   event.target.classList.add("selected");
@@ -76,3 +76,4 @@ function showResult() {
 }
 
 showQuestion();
+

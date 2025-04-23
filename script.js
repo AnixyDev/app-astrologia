@@ -22,15 +22,21 @@ function showQuestion() {
     const button = document.createElement("div");
     button.textContent = option;
     button.classList.add("option");
-    button.onclick = (e) => selectOption(option, e); // ✅ PASAMOS 'e'
+    button.onclick = (e) => selectOption(option, e); // PASAMOS 'e' y opcion
     optionsEl.appendChild(button);
   });
+
+  // Deshabilitar el botón de siguiente hasta que se seleccione una opción
+  nextBtn.disabled = true;
 }
 
 function selectOption(option, event) {
   answers[currentQuestion] = option;
   Array.from(optionsEl.children).forEach(btn => btn.classList.remove("selected"));
   event.target.classList.add("selected");
+
+  // Habilitar el botón de siguiente después de seleccionar una opción
+  nextBtn.disabled = false;
 }
 
 nextBtn.onclick = () => {
@@ -42,11 +48,14 @@ nextBtn.onclick = () => {
 };
 
 function showResult() {
+  // Ocultar la sección de preguntas
   document.getElementById("quiz").style.display = "none";
+  resultEl.style.display = "block"; // Mostrar el resultado
 
   const signo = answers[0];
   let resultado = "";
 
+  // Aquí definimos las predicciones por signo
   switch(signo) {
     case "Aries":
     case "Leo":
@@ -76,4 +85,3 @@ function showResult() {
 }
 
 showQuestion();
-

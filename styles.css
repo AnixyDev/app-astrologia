@@ -40,6 +40,11 @@ body {
   transform: scale(1.05);
 }
 
+.option.selected {
+  background-color: #d1e7dd;
+  border-color: #0f5132;
+}
+
 #next-btn {
   margin-top: 1rem;
   padding: 0.8rem 1.5rem;
